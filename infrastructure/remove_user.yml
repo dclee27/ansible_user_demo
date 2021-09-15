@@ -1,5 +1,5 @@
 ---
-- name: Create user accounts
+- name: Remove user accounts
   hosts: "{{ HOSTS | default('web') }}"
   become: true
   vars:
@@ -8,10 +8,10 @@
       - deleteme
   
   tasks:
-    - name: Create user accounts
+    - name: Remove user accounts
       user:
         name: "{{ item }}"
-        state: present
-        groups: "wheel"
+        state: absent
+        remove: yes
       loop: "{{ users }}"
         
